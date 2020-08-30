@@ -58,7 +58,7 @@ Build the model
 '''
 '''Set up the layers'''
 # first - transforms the format of the images from a two-dimensional array (of 28 by 28 pixels) to a
-# # one-dimensional array (of 28 * 28 = 784 pixels)
+#     one-dimensional array (of 28 * 28 = 784 pixels)
 # second - has 128 nodes that are fully connected
 # third - has 10 nodes that are fully connected, that represent the 10 different classes
 model = tf.keras.Sequential([
@@ -70,7 +70,7 @@ model = tf.keras.Sequential([
 '''Compile the model'''
 # optimizer - how the model is updated based on the data it sees and its loss function
 # loss function - measures how accurate the model is during training. The goal is to minimize this function to "steer"
-# # the model in the right direction
+#     the model in the right direction
 # metrics - used to monitor the training and testing steps
 model.compile(
     optimizer='adam',
@@ -103,13 +103,13 @@ print('> test label: %i (%s)' % (test_labels[0], class_names[test_labels[0]]))
 print('> prediction is %sCORRECT' % ("" if test_labels[0] == _predicted_label else "IN"))
 
 
-def plot_image(i, predictions_array, true_label, img):
-    true_label, img = true_label[i], img[i]
+def plot_image(i, predictions_array, true_label, image):
+    true_label, image = true_label[i], image[i]
     plt.grid(False)
     plt.xticks([])
     plt.yticks([])
 
-    plt.imshow(img, cmap=plt.cm.binary)
+    plt.imshow(image, cmap=plt.cm.binary)
 
     predicted_label = int(np.argmax(predictions_array))
     plt.xlabel(
@@ -150,11 +150,11 @@ plt.show()
 Use the train model
 '''
 print('\nPredict the 12th image of the test collection...')
-img = test_images[12]
+test_image = test_images[12]
 # Add the image to a batch where it's the only member, because tf.keras models are optimized to make predictions on a
-# # batch, or collection, of examples at once
-img = (np.expand_dims(img, 0))
-predictions_single = probability_model.predict(img)
+#     batch, or collection, of examples at once
+test_image = (np.expand_dims(test_image, 0))
+predictions_single = probability_model.predict(test_image)
 print('Predictions array:', predictions_single)
 print('Plot of the prediction of the 12th image...')
 plot_value_array(12, predictions_single[0], test_labels)
